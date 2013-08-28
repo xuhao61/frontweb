@@ -1,0 +1,11 @@
+<Alloy>
+	<Window navBarHidden="false">
+		<View class="container" layout="vertical"
+			backgroundColor="#ffffff">
+			<Label id="title"></Label>
+			<Label id="description"></Label>
+			<Button id="thrillerBtn" title="Watch Trailer"></Button>
+			<Button id="selectSeatsBtn" title="Select Seats"></Button>
+		</View>
+	</Window>
+</Alloy>

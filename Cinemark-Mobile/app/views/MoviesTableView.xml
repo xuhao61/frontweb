@@ -1,0 +1,8 @@
+<Alloy>
+	<Window navBarHidden="false">
+		<View class="container" layout="vertical"
+			backgroundColor="#ffffff">
+			<TableView id="moviesTableView"/>
+		</View>
+	</Window>
+</Alloy>

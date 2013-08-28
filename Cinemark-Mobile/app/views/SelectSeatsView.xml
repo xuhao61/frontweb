@@ -1,0 +1,13 @@
+<Alloy>
+	<Window navBarHidden="false"
+		backgroundColor="#ffffff">
+		<View class="container" id="container">
+			<ScrollView id="seatsContainer"
+				showHorizontalScrollIndicator="true"
+				showVerticalScrollIndicator="true"
+				contentHeight="auto"
+				contentWidth="auto">
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

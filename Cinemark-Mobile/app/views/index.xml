@@ -1,0 +1,6 @@
+<Alloy>
+	<Window class="container"
+		navBarHidden="false">
+		<Require type="view" src="TheatersTableView" id="theatersView"/>
+	</Window>
+</Alloy>
