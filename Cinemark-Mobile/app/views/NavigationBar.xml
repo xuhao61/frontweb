@@ -1,0 +1,17 @@
+<Alloy>
+	<Window class="container"
+		navBarHidden="false">
+		<NavigationGroup id="navgroup" platform="ios,mobileweb">
+			<Window>
+				<LeftNavButton title="back">
+	            	<View id="view">
+	                	<Button id="leftOne" 
+	                		title="back"
+	                		style="BORDERED"
+	                		onClick="goBack"></Button>
+	            	</View>
+	        	</LeftNavButton>
+			</Window>
+		</NavigationGroup>
+	</Window>
+</Alloy>
