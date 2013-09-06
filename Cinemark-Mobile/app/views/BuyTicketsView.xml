@@ -1,0 +1,34 @@
+<Alloy>
+	<Window navBarHidden="false"
+		backgroundColor="#ffffff"
+		id="buyTicketsViewWindow"
+		title="Buy Tickets">
+			<Require type="view" platform="ios,mobileweb" src="NavigationBar"/>
+			<View layout="vertical" class="contentView">
+				<Label id="infoLabel" class="subtitleLabel"/>
+				<TextField hintText="Email" 
+					id="emailInput"
+					borderColor="#336699"
+					width="250"
+					top="5"
+					keyboardType="Titanium.UI.KEYBOARD_EMAIL"
+					class="formInput"/>
+				<TextField hintText="DNI" 
+					id="dniInput"
+					borderColor="#336699"
+					width="250"
+					top="5"
+					keyboardType="Titanium.UI.KEYBOARD_NUMBER_PAD"
+					class="formInput"/>
+				<TextField hintText="Credit Card Number" 
+					id="creditCardNumber"
+					borderColor="#336699"
+					width="250"
+					top="5"
+					keyboardType="Titanium.UI.KEYBOARD_NUMBER_PAD"
+					class="formInput"/>
+				<Button title="Set Credit Card Type" id="creditCardButton" top="5"/>
+				<Button title="Buy!" id="buyButton" />
+			</View>
+	</Window>
+</Alloy>

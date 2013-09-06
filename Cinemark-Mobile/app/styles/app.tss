@@ -1,0 +1,71 @@
+".contentView[platform=ios]": {
+	top:50
+}
+
+".titleLabel[platform=ios]": {
+    color:"#0B3861",
+    font: {
+        fontWeight: "bold",
+        fontSize: 20
+    }
+}
+
+".titleLabel[platform=android]": {
+    color:"#0B3861",
+    font: {
+        fontWeight: "bold",
+        fontSize: 40
+    }
+}
+
+".subtitleLabel[platform=ios]": {
+    color:"#0B3861",
+    font: {
+        fontWeight: "bold",
+        fontSize: 10
+    }
+}
+
+".subtitleLabel[platform=android]": {
+    color:"#0B3861",
+    font: {
+        fontWeight: "bold",
+        fontSize: 20
+    }
+}
+
+".descriptionLabel[platform=ios]": {
+	left:5,
+	height:70,
+	font: {
+        fontSize: 12
+    }
+}
+
+".descriptionLabel[platform=android]": {
+	left:5,
+	height:140,
+	font: {
+        fontSize: 15
+    }
+}
+
+".formInput[platform=ios]": {
+	height:30
+}
+
+".trailerImage[platform=ios]": {
+	height:50
+}
+
+".trailerImage[platform=android]": {
+	height:100
+}
+
+".detailImage[platform=ios]": {
+	height:150
+}
+
+".detailImage[platform=android]": {
+	height:250
+}
