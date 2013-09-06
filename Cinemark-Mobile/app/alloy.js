@@ -9,8 +9,25 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+Titanium.include("test/DataTest.js");
+var BaseViewController = require('util/BaseViewController');
 var ActivityIndicator = require('util/ActivityIndicator');
 var ActivityIndicatorView = new ActivityIndicator();
 
 var UtilClass = require('util/Util');
 var Util = new UtilClass();
+
+var WindowManagerClass = require('util/WindowManager');
+var WindowManager = new WindowManagerClass();
+
+function goBack() {
+	WindowManager.removeWindow();
+}
+
+var TEST_MODE = false;
+
+function runTests() {
+	getDataReady(function(){
+		jsUnity.run(DataTestSuite);		
+	});
+}

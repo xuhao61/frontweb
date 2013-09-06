@@ -2,7 +2,7 @@ exports.definition = {
 	config: {
 		columns: {
 		    "row": "string",
-		    "col": "string",
+		    "col": "int",
 		    "section": "string"
 		},
 		adapter: {

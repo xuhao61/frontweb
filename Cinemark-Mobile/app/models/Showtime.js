@@ -4,7 +4,8 @@ exports.definition = {
 		    "id": "string",
 		    "left": "string",
 		    "center": "string",
-		    "right": "string"
+		    "right": "string",
+		    "schedule": "string"
 		},
 		adapter: {
 			type: "sql",

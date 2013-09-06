@@ -1,13 +1,19 @@
 <Alloy>
 	<Window navBarHidden="false"
-		backgroundColor="#ffffff">
-		<View class="container" id="container">
-			<ScrollView id="seatsContainer"
-				showHorizontalScrollIndicator="true"
-				showVerticalScrollIndicator="true"
-				contentHeight="auto"
-				contentWidth="auto">
-			</ScrollView>
+		backgroundColor="#ffffff"
+		id="selectSeatsViewWindow"
+		title="Seat Selection">
+		<Require type="view" src="NavigationBar" platform="ios,mobileweb"/>
+		<View layout="vertical" class="contentView">
+			<Button title="" id="seatCountButton" />
+			<Button title="Buy Tickets" top="2" id="buyTicketsButton" />
+			<View id="container" layout="vertical">
+				<ScrollView id="seatsContainer"
+					contentHeight="auto"
+					contentWidth="auto"
+					scrollType="horizontal">
+				</ScrollView>
+			</View>
 		</View>
 	</Window>
 </Alloy>

@@ -1,30 +1,27 @@
 function Service() {
 	
-	var BASE_URL = "";
+	//var BASE_URL = "http://172.17.227.225:8080/cinemark/";
+	var BASE_URL = "http://promocinemark.herokuapp.com/";
 	
-	this.call = function(url, parseFc, failCallback) {
-		Ti.App.addEventListener("doCall", _doCall);
-		Ti.App.fireEvent("doCall", {url:url, parseFc:parseFc, failCallback:failCallback});
-	};	
-	
-	var _doCall = function(e) {
-		var url = e.url;
-		var parseFc = e.parseFc;
-		var failCallback = e.failCallback;
+	/*
+	 * Make the http request
+	 */
+	this.call = function(url, method, _parseFc, _failCallback) {
+		
 		var httpClient = Titanium.Network.createHTTPClient();
-		
-		httpClient.open('GET', BASE_URL + url);
-		
 		httpClient.onload = function(response) {
-			parseFc(this.responseData);
+			_parseFc(this.responseText);
 		};
 		
 		httpClient.onerror = function(e) {
-			if( failCallback ) failCallback(e);
+			if( _failCallback ) _failCallback(e);
 		};
 		
+		httpClient.open(method,BASE_URL + url);
+		httpClient.setRequestHeader('Content-Type', 'application/json');
 		httpClient.send();
-	};
+	};	
+	
 }
 
 module.exports = Service;

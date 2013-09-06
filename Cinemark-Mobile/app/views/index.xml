@@ -1,6 +1,9 @@
 <Alloy>
-	<Window class="container"
-		navBarHidden="false">
-		<Require type="view" src="TheatersTableView" id="theatersView"/>
+	<Window navBarHidden="false"
+		layout="vertical" title="Theaters"
+		backgroundColor="#ffffff">
+		<View class="container" layout="vertical" title="Theaters">
+			<TableView id="tableView"/>
+		</View>
 	</Window>
 </Alloy>

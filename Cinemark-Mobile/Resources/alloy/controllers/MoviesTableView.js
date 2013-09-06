@@ -1,61 +1,100 @@
 function Controller() {
-    function initialize() {
-        theaterId = args.theaterId;
-        var moviesService = new MoviesService();
-        moviesService.call(theaterId, onMoviesLoaded, onLoadFail);
-    }
-    function onMoviesLoaded(movies) {
-        var rows = new Array();
-        for (var i = 0; movies.length > i; i++) {
-            var movie = movies[i];
-            var row = Ti.UI.createTableViewRow({
-                leftImage: movie.get("thumbnail"),
-                title: movie.get("name"),
-                movie: movie,
-                hasChild: true,
-                height: 50
-            });
-            rows.push(row);
-        }
-        $.moviesTableView.addEventListener("click", openShowView);
-        $.moviesTableView.setData(rows);
-    }
-    function openShowView(e) {
-        var movie = e.rowData.movie;
-        var movieDetailViewController = Alloy.createController("MovieDetailView", {
-            movie: movie
-        });
-        movieDetailViewController.getView().open();
-    }
-    function onLoadFail(error) {
-        alert(error);
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
     var $ = this;
     var exports = {};
-    $.__views.MoviesTableView = Ti.UI.createWindow({
+    $.__views.moviesTableViewWindow = Ti.UI.createWindow({
         navBarHidden: "false",
-        id: "MoviesTableView"
-    });
-    $.__views.MoviesTableView && $.addTopLevelView($.__views.MoviesTableView);
-    $.__views.__alloyId1 = Ti.UI.createView({
-        layout: "vertical",
+        id: "moviesTableViewWindow",
         backgroundColor: "#ffffff",
-        id: "__alloyId1"
+        title: "Movies"
     });
-    $.__views.MoviesTableView.add($.__views.__alloyId1);
+    $.__views.moviesTableViewWindow && $.addTopLevelView($.__views.moviesTableViewWindow);
+    $.__views.__alloyId5 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId5"
+    });
+    $.__views.moviesTableViewWindow.add($.__views.__alloyId5);
     $.__views.moviesTableView = Ti.UI.createTableView({
         id: "moviesTableView"
     });
-    $.__views.__alloyId1.add($.__views.moviesTableView);
+    $.__views.__alloyId5.add($.__views.moviesTableView);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var MoviesService = require("services/MoviesService");
+    var MoviesTableViewController = function() {
+        function onMoviesLoaded(movies) {
+            if (movies.length) {
+                var rows = new Array();
+                for (var i = 0; movies.length > i; i++) {
+                    var movie = movies[i];
+                    var image;
+                    image = "3D" == movie.get("cinemaType") ? "http://i00.i.aliimg.com/wsphoto/v2/442811884_2/3D-Glasses-Sunglasses-movie-Gave-Glasses-3D-TV-Glasses-1000pcs.jpg_50x50.jpg" : "XD" == movie.get("cinemaType") ? "http://www.cinemark.com/media/104710/icon_50_xd.png" : "http://cdn4.iconfinder.com/data/icons/SUPERVISTA/multimedia/png/128/video.png";
+                    var row = Ti.UI.createTableViewRow({
+                        movie: movie,
+                        hasChild: true,
+                        height: 70
+                    });
+                    var label = Ti.UI.createLabel({
+                        text: movie.get("title"),
+                        left: 60,
+                        font: {
+                            fontWeight: "bold",
+                            color: "#000000",
+                            fontSize: 20
+                        },
+                        movie: movie
+                    });
+                    var imageView = Ti.UI.createImageView({
+                        image: image,
+                        top: 10,
+                        left: 5,
+                        width: 48,
+                        preventDefaultImage: true,
+                        movie: movie
+                    });
+                    row.add(label);
+                    row.add(imageView);
+                    rows.push(row);
+                }
+                context.hideActivityIndicator();
+                $.moviesTableView.addEventListener("click", openShowView);
+                $.moviesTableView.setData(rows);
+            } else {
+                Util.addNoDataMessage($.moviesTableView, "No Movies for this Theater");
+                context.hideActivityIndicator();
+            }
+        }
+        function onLoadFail(error) {
+            context.hideActivityIndicator();
+            alert(error.error);
+            Util.addNoDataMessage($.moviesTableView, "Error ocurred.");
+        }
+        function openShowView(e) {
+            var movie = e.rowData.movie;
+            var movieDetailViewController = Alloy.createController("MovieDetailView", {
+                movie: movie,
+                theaterId: theaterId
+            });
+            context.openNewWindow(movieDetailViewController.getView());
+        }
+        var MoviesService = require("services/MoviesService");
+        var theaterId;
+        var context;
+        var moviesService;
+        this.initialize = function(args) {
+            this.initializeView($.moviesTableViewWindow);
+            this.showActivityIndicator("Loading Movies...");
+            context = this;
+            theaterId = args.theaterId;
+            moviesService = new MoviesService();
+            moviesService.call(theaterId, onMoviesLoaded, onLoadFail);
+        };
+    };
+    MoviesTableViewController.prototype = new BaseViewController();
     var args = arguments[0] || {};
-    var theaterId;
-    initialize();
+    var controller = new MoviesTableViewController();
+    controller.initialize(args);
     _.extend($, exports);
 }
 

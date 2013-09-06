@@ -1,7 +1,10 @@
 <Alloy>
-	<Window navBarHidden="false">
-		<View class="container" layout="vertical"
-			backgroundColor="#ffffff">
+	<Window navBarHidden="false"
+		id="moviesTableViewWindow"
+		backgroundColor="#ffffff"
+		title="Movies">
+		<Require type="view" platform="ios,mobileweb" src="NavigationBar"/>
+		<View layout="vertical" class="contentView">
 			<TableView id="moviesTableView"/>
 		</View>
 	</Window>

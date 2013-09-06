@@ -2,9 +2,13 @@ exports.definition = {
     config: {
         columns: {
             id: "string",
-            name: "string",
-            description: "string",
-            trailerUrl: "string"
+            title: "string",
+            summary: "string",
+            trailerUrl: "string",
+            genre: "string",
+            director: "string",
+            cinemaType: "string",
+            picUrl: "string"
         },
         adapter: {
             type: "sql",

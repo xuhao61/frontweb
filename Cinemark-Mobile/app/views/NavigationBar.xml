@@ -1,16 +1,13 @@
 <Alloy>
 	<Window class="container"
-		navBarHidden="false">
-		<NavigationGroup id="navgroup" platform="ios,mobileweb">
+		navBarHidden="false"
+		layout="vertical">
+		<NavigationGroup platform="ios,mobileweb">
 			<Window>
-				<LeftNavButton title="back">
-	            	<View id="view">
-	                	<Button id="leftOne" 
-	                		title="back"
-	                		style="BORDERED"
-	                		onClick="goBack"></Button>
-	            	</View>
-	        	</LeftNavButton>
+				<LeftNavButton>
+				    <Button title="Back"
+				    	onClick="goBack" />
+				</LeftNavButton>
 			</Window>
 		</NavigationGroup>
 	</Window>

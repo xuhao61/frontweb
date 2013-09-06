@@ -3,22 +3,31 @@ function ShowtimeService() {
 	var Service = require('services/Service');
 	var _successCallback = null;
 	var _service = new Service();
-	var _serviceName = "geShowtime";
+	var _serviceName;
 	
-	this.call = function( showtimeId, successCallback, failCallback ) {
+	this.call = function( movieId, theaterId, successCallback, failCallback) {
+		_serviceName = "resources/showTimes?movie=" + movieId + "&theater=" + theaterId;
 		_successCallback = successCallback;
-	    //_service.call( _url, _parseResponse, failCallback );
-	    var response = '{"left":{"rows":"30","cols":"4","takenSeats":[{"row":"1","col":"3"}]},"center":{"rows":"30","cols":"15","takenSeats":[{"row":"2","col":"5"}]},"right":{"rows":"30","cols":"4","takenSeats":[{"row":"6","col":"2"}]}}';
-	    _parseResponse( response );
+	    _service.call( _serviceName, 'GET', _parseResponse, failCallback);
 	};
 	
 	var _parseResponse = function( response ) {
-		var parsedResponse = JSON.parse(response);
-		var left = Alloy.createModel('Section', parsedResponse.left);
-		var center = Alloy.createModel('Section', parsedResponse.center);
-		var right = Alloy.createModel('Section', parsedResponse.right);
-		var showtime = Alloy.createModel('Showtime', {left:left, center:center, right:right} );		
-		_successCallback( showtime );
+		var showtimes = new Array();
+		try{
+			var parsedResponse = JSON.parse(response);
+			for(var i=0; i<parsedResponse.length; i++) {
+				var left = Alloy.createModel('Section', parsedResponse[i].left);
+				var center = Alloy.createModel('Section', parsedResponse[i].center);
+				var right = Alloy.createModel('Section', parsedResponse[i].right);
+				var schedule = Alloy.createModel('Schedule', parsedResponse[i].schedules);
+				var id = parsedResponse[i].id;
+				var showtime = Alloy.createModel('Showtime', {left:left, center:center, right:right, schedule:schedule, id:id} );
+				showtimes.push(showtime);	
+			}		
+		} catch(e) {
+			
+		}
+		_successCallback( showtimes);
 	};
 
 }

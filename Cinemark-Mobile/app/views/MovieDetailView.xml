@@ -1,11 +1,17 @@
 <Alloy>
-	<Window navBarHidden="false">
-		<View class="container" layout="vertical"
-			backgroundColor="#ffffff">
-			<Label id="title"></Label>
-			<Label id="description"></Label>
-			<Button id="thrillerBtn" title="Watch Trailer"></Button>
-			<Button id="selectSeatsBtn" title="Select Seats"></Button>
-		</View>
+	<Window navBarHidden="false"
+		backgroundColor="#ffffff"
+		id="movieDetailViewWindow">
+			<Require type="view" platform="ios,mobileweb" src="NavigationBar"/>
+			<View layout="vertical" class="contentView">
+				<Label id="title" class="titleLabel"></Label>
+				<Label color="#000000" id="infoLabel" class="subtitleLabel"></Label>
+				<ImageView id="movieImage" class="detailImage"></ImageView>
+				<TextArea editable="false" textAlign="left"  id="description" class="descriptionLabel" borderColor="#ffffff" borderWidth="0"></TextArea>
+				<ImageView id="thrillerBtn" image="http://nogreaterjoy.org/shop/media/watch-trailer-button.png" class="trailerImage" ></ImageView>
+				<Label left="5" top="5" id="selectShowtimeLabel" text="Select Showtime:" color="#000000"></Label>
+				<View left="5" id="showtimesContainer" layout="horizontal">
+				</View>
+			</View>
 	</Window>
 </Alloy>
