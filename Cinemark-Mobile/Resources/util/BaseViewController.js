@@ -12,7 +12,7 @@ var BaseViewController = function() {
     };
     this.openNewWindow = function(windowToOpen) {
         windowToOpen.open({
-            animated: true
+            transition: Titanium.UI.iPhone.AnimationStyle.CURL_UP
         });
     };
 };

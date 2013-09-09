@@ -1,5 +1,6 @@
 var BuyTicketsViewController = function() {
 	
+	var OptionsSelector = require("Util/OptionsSelector");
 	var PaymentService = require('services/PaymentService');
 	var selectedSeats;
 	var showtime;
@@ -27,39 +28,22 @@ var BuyTicketsViewController = function() {
 	 * Open the credit card selection view.
 	 */
 	function openCreditCardView() {
-		var creditCardView = Ti.UI.createWindow({
-			title: 'Credit Card', 
-			layout: 'vertical',
-			backgroundColor: '#ffffff'
-		});
-		
-		var readyButton = Ti.UI.createButton({
-			title : 'Ready'
-		});
 	
-		readyButton.addEventListener('click', function(e){
+		var clickHandler = function(e){
 			creditCardView.close();
-		});
+		};
 		
-		
-		var creditCardPicker = Ti.UI.createPicker();
-		creditCardPicker.addEventListener('change', function(e){
-		});
 		
 		var data = [];
-		data[0] = Ti.UI.createPickerRow({title:'AMEX', data:'1'});
-		data[1] = Ti.UI.createPickerRow({title:'Cabal', data:'2'});
-		data[2] = Ti.UI.createPickerRow({title:'Mastercard', data:'3'});
-		data[3] = Ti.UI.createPickerRow({title:'VISA', data:'4'});
+		data[0] = {title:'AMEX', data:'1'};
+		data[1] = {title:'Cabal', data:'2'};
+		data[2] = {title:'Mastercard', data:'3'};
+		data[3] = {title:'VISA', data:'4'};
 		
-		creditCardPicker.add(data);
-		creditCardPicker.setSelectedRow(0, 0, false);
-		creditCardPicker.selectionIndicator = true;
+		var creditCardView = new OptionsSelector();
+		creditCardView.createComponent('Credit Card', data, 0, null, clickHandler);
+		creditCardView.open();
 		
-		
-		creditCardView.add(creditCardPicker);
-		creditCardView.add(readyButton);
-		creditCardView.open({modal:true});
 	}
 	
 	/*

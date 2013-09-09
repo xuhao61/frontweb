@@ -11,7 +11,13 @@ function Controller() {
         title: "Seat Selection"
     });
     $.__views.selectSeatsViewWindow && $.addTopLevelView($.__views.selectSeatsViewWindow);
+    $.__views.__alloyId10 = Alloy.createController("NavigationBar", {
+        id: "__alloyId10",
+        __parentSymbol: $.__views.selectSeatsViewWindow
+    });
+    $.__views.__alloyId10.setParent($.__views.selectSeatsViewWindow);
     $.__views.__alloyId11 = Ti.UI.createView({
+        top: 50,
         layout: "vertical",
         id: "__alloyId11"
     });
@@ -140,50 +146,35 @@ function Controller() {
         }
         function openSeatsCountView() {
             var selectedValue;
-            var seatsView = Ti.UI.createWindow({
-                title: "How many seats?",
-                layout: "vertical",
-                backgroundColor: "#ffffff"
-            });
-            var readyButton = Ti.UI.createButton({
-                title: "Ready",
-                top: 5
-            });
-            readyButton.addEventListener("click", function() {
+            var data = [];
+            data[0] = {
+                title: "1",
+                data: "1"
+            };
+            data[1] = {
+                title: "2",
+                data: "2"
+            };
+            data[2] = {
+                title: "3",
+                data: "3"
+            };
+            data[3] = {
+                title: "4",
+                data: "4"
+            };
+            var selectorClickHandler = function() {
                 seatCount = selectedValue;
                 $.seatCountButton.setTitle(seatCount + " Seats");
                 removeExtraSeats();
                 seatsView.close();
-            });
-            var seatsPicker = Ti.UI.createPicker();
-            seatsPicker.addEventListener("change", function(e) {
+            };
+            var selectorChangeHandler = function(e) {
                 selectedValue = e.row.data;
-            });
-            var data = [];
-            data[0] = Ti.UI.createPickerRow({
-                title: "1",
-                data: "1"
-            });
-            data[1] = Ti.UI.createPickerRow({
-                title: "2",
-                data: "2"
-            });
-            data[2] = Ti.UI.createPickerRow({
-                title: "3",
-                data: "3"
-            });
-            data[3] = Ti.UI.createPickerRow({
-                title: "4",
-                data: "4"
-            });
-            seatsPicker.add(data);
-            seatsPicker.setSelectedRow(0, seatCount - 1, false);
-            seatsPicker.selectionIndicator = true;
-            seatsView.add(seatsPicker);
-            seatsView.add(readyButton);
-            seatsView.open({
-                modal: true
-            });
+            };
+            var seatsView = new OptionsSelector();
+            seatsView.createComponent("How many seats?", data, seatCount - 1, selectorChangeHandler, selectorClickHandler);
+            seatsView.open();
         }
         function buyTickets() {
             if (selectedSeatsViews.length) {
@@ -200,6 +191,7 @@ function Controller() {
                 context.openNewWindow(buyTicketsViewController.getView());
             } else alert("Select at least one seat.");
         }
+        var OptionsSelector = require("Util/OptionsSelector");
         var SEAT_SIZE = 25;
         var SPACE_BETWEEN_SEATS = 2;
         var seatCount = 2;

@@ -10,7 +10,13 @@ function Controller() {
         id: "movieDetailViewWindow"
     });
     $.__views.movieDetailViewWindow && $.addTopLevelView($.__views.movieDetailViewWindow);
+    $.__views.__alloyId2 = Alloy.createController("NavigationBar", {
+        id: "__alloyId2",
+        __parentSymbol: $.__views.movieDetailViewWindow
+    });
+    $.__views.__alloyId2.setParent($.__views.movieDetailViewWindow);
     $.__views.__alloyId3 = Ti.UI.createView({
+        top: 50,
         layout: "vertical",
         id: "__alloyId3"
     });
@@ -19,7 +25,7 @@ function Controller() {
         color: "#0B3861",
         font: {
             fontWeight: "bold",
-            fontSize: 40
+            fontSize: 20
         },
         id: "title"
     });
@@ -28,21 +34,21 @@ function Controller() {
         color: "#000000",
         font: {
             fontWeight: "bold",
-            fontSize: 20
+            fontSize: 10
         },
         id: "infoLabel"
     });
     $.__views.__alloyId3.add($.__views.infoLabel);
     $.__views.movieImage = Ti.UI.createImageView({
-        height: 250,
+        height: 150,
         id: "movieImage"
     });
     $.__views.__alloyId3.add($.__views.movieImage);
     $.__views.description = Ti.UI.createTextArea({
         left: 5,
-        height: 140,
+        height: 70,
         font: {
-            fontSize: 15
+            fontSize: 12
         },
         editable: "false",
         textAlign: "left",
@@ -52,7 +58,7 @@ function Controller() {
     });
     $.__views.__alloyId3.add($.__views.description);
     $.__views.thrillerBtn = Ti.UI.createImageView({
-        height: 100,
+        height: 50,
         id: "thrillerBtn",
         image: "http://nogreaterjoy.org/shop/media/watch-trailer-button.png"
     });
