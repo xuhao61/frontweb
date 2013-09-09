@@ -1,6 +1,6 @@
 var SelectSeatsViewController = function() {
 	
-	var OptionsSelector = require("Util/OptionsSelector");
+	var OptionsSelector = require("util/OptionsSelector");
 	var SEAT_SIZE = 25;
 	var SPACE_BETWEEN_SEATS = 2;
 	var AISLE_SIZE = 6;

@@ -11,13 +11,7 @@ function Controller() {
         title: "Seat Selection"
     });
     $.__views.selectSeatsViewWindow && $.addTopLevelView($.__views.selectSeatsViewWindow);
-    $.__views.__alloyId10 = Alloy.createController("NavigationBar", {
-        id: "__alloyId10",
-        __parentSymbol: $.__views.selectSeatsViewWindow
-    });
-    $.__views.__alloyId10.setParent($.__views.selectSeatsViewWindow);
     $.__views.__alloyId11 = Ti.UI.createView({
-        top: 50,
         layout: "vertical",
         id: "__alloyId11"
     });
@@ -191,7 +185,7 @@ function Controller() {
                 context.openNewWindow(buyTicketsViewController.getView());
             } else alert("Select at least one seat.");
         }
-        var OptionsSelector = require("Util/OptionsSelector");
+        var OptionsSelector = require("util/OptionsSelector");
         var SEAT_SIZE = 25;
         var SPACE_BETWEEN_SEATS = 2;
         var seatCount = 2;

@@ -11,13 +11,7 @@ function Controller() {
         title: "Buy Tickets"
     });
     $.__views.buyTicketsViewWindow && $.addTopLevelView($.__views.buyTicketsViewWindow);
-    $.__views.__alloyId0 = Alloy.createController("NavigationBar", {
-        id: "__alloyId0",
-        __parentSymbol: $.__views.buyTicketsViewWindow
-    });
-    $.__views.__alloyId0.setParent($.__views.buyTicketsViewWindow);
     $.__views.__alloyId1 = Ti.UI.createView({
-        top: 50,
         layout: "vertical",
         id: "__alloyId1"
     });
@@ -26,13 +20,12 @@ function Controller() {
         color: "#0B3861",
         font: {
             fontWeight: "bold",
-            fontSize: 10
+            fontSize: 20
         },
         id: "infoLabel"
     });
     $.__views.__alloyId1.add($.__views.infoLabel);
     $.__views.emailInput = Ti.UI.createTextField({
-        height: 30,
         hintText: "Email",
         id: "emailInput",
         borderColor: "#336699",
@@ -42,7 +35,6 @@ function Controller() {
     });
     $.__views.__alloyId1.add($.__views.emailInput);
     $.__views.dniInput = Ti.UI.createTextField({
-        height: 30,
         hintText: "DNI",
         id: "dniInput",
         borderColor: "#336699",
@@ -52,7 +44,6 @@ function Controller() {
     });
     $.__views.__alloyId1.add($.__views.dniInput);
     $.__views.creditCardNumber = Ti.UI.createTextField({
-        height: 30,
         hintText: "Credit Card Number",
         id: "creditCardNumber",
         borderColor: "#336699",
@@ -124,7 +115,7 @@ function Controller() {
             context.hideActivityIndicator();
             alert(e.error);
         }
-        var OptionsSelector = require("Util/OptionsSelector");
+        var OptionsSelector = require("util/OptionsSelector");
         var PaymentService = require("services/PaymentService");
         var selectedSeats;
         var showtime;

@@ -11,13 +11,7 @@ function Controller() {
         title: "Movies"
     });
     $.__views.moviesTableViewWindow && $.addTopLevelView($.__views.moviesTableViewWindow);
-    $.__views.__alloyId4 = Alloy.createController("NavigationBar", {
-        id: "__alloyId4",
-        __parentSymbol: $.__views.moviesTableViewWindow
-    });
-    $.__views.__alloyId4.setParent($.__views.moviesTableViewWindow);
     $.__views.__alloyId5 = Ti.UI.createView({
-        top: 50,
         layout: "vertical",
         id: "__alloyId5"
     });

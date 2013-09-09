@@ -19,7 +19,7 @@ function ActivityIndicator() {
         window && window.activityIndicator && window.activityIndicator.hide();
     };
     var _setupStyle = function() {
-        style = Ti.UI.iPhone.ActivityIndicatorStyle.DARK;
+        style = Ti.UI.ActivityIndicatorStyle.DARK;
     };
 }
 

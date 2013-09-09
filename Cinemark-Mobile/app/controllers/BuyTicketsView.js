@@ -1,6 +1,6 @@
 var BuyTicketsViewController = function() {
 	
-	var OptionsSelector = require("Util/OptionsSelector");
+	var OptionsSelector = require("util/OptionsSelector");
 	var PaymentService = require('services/PaymentService');
 	var selectedSeats;
 	var showtime;
